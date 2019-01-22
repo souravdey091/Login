@@ -44,7 +44,7 @@
             <label class="mb-3">( OR )</label>
             <label class="mb-1 d-block" for="input-QR">Enter QR Code</label>
             <input name="input-QR" id="qrcode" class="w-100 my-3 py-2" />
-            <button type="button" onclick="verifyOrCode(document.getElementById('qrcode').value)" class="btn btn-primary btn-block mb-3 rounded-0">Login</button>
+            <button type="button" onclick="verifyQrCode(document.getElementById('qrcode').value)" class="btn btn-primary btn-block mb-3 rounded-0">Login</button>
         </div>
     </div>
 
@@ -90,7 +90,7 @@
             requestAnimationFrame(tick);
         }
 
-        function verifyOrCode(code) {
+        function verifyQrCode(code) {
             var data = {
                 request: {
                     type: 'sample',
