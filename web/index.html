@@ -106,39 +106,6 @@
                 }
             };
 
-            // Add your stall telemetry data and remove unwanted telemetry
-            var telemetryData = {
-                "events": [{
-                    "eid": "DC_START",
-                    "ets": new Date().getTime(),
-                    "did": deviceId,
-                    "dimensions": {
-                        "visitorId": code,
-                        "stallId": "stallId",
-                        "ideaId": "ideaId",
-                        "visitorName": "Visitor Name",
-                        "studentId": "studentId",
-                        "studentName": "studentName",
-                        "teacherId": "teacherId",
-                        "teacherName": "teacherName",
-                        "parentId": "parentId",
-                        "parentName": "parentName",
-                        "stallName": "stallName",
-                        "ideaName": "ideaName",
-                        "classroomId": "classroomId",
-                        "school": "school",
-                        "district": "district",
-                        "period": "period",
-                        "topics": "topics",
-                        "subject": "subject",
-                        "grade": "grade"
-                    },
-                    "edata": {}
-                }
-
-                ]
-            };
-
             $.ajax({
                 method: 'POST',
                 url: 'https://dev.ekstep.in/api/devcon/v3/login',
@@ -147,6 +114,38 @@
                 contentType: 'application/json',
             }).done(function (data) {
                 if (data.result && data.result.Visitor) {
+                    // Add your stall telemetry data and remove unwanted telemetry
+                    var telemetryData = {
+                        "events": [{
+                            "eid": "DC_START",
+                            "ets": new Date().getTime(),
+                            "did": deviceId,
+                            "dimensions": {
+                                "visitorId": code,
+                                "visitorName": data.result.Visitor.name,
+                                "stallId": "stallId",
+                                "ideaId": "ideaId",
+                                "studentId": "studentId",
+                                "studentName": "studentName",
+                                "teacherId": "teacherId",
+                                "teacherName": "teacherName",
+                                "parentId": "parentId",
+                                "parentName": "parentName",
+                                "stallName": "stallName",
+                                "ideaName": "ideaName",
+                                "classroomId": "classroomId",
+                                "school": "school",
+                                "district": "district",
+                                "period": "period",
+                                "topics": "topics",
+                                "subject": "subject",
+                                "grade": "grade"
+                            },
+                            "edata": {}
+                        }
+
+                        ]
+                    };
                     $.ajax({
                         method: 'POST',
                         url: 'http://52.172.188.118:3000/v1/telemetry',
